@@ -1,14 +1,7 @@
-# MaaResource
+# MaaResourceMirror
 
-同步 [MaaAssistantArknights](https://github.com/MaaAssistantArknights/MaaAssistantArknights) 中与 MaaCore 版本无关，需要动态更新的文件
+自动同步 [MaaAssistantArknights/MaaResource](https://github.com/MaaAssistantArknights/MaaResource) 上游仓库。
 
-## 文件列表
+### MRS 脚本说明
 
-### resource
-
-- [dynamic_list.txt](https://ota.maa.plus/MaaAssistantArknights/MaaAssistantArknights/resource/dynamic_list.txt)
-- [MaaSingleFiles](https://github.com/MaaAssistantArknights/MaaAssistantArknights/blob/dev/src/MaaWpfGui/Models/ResourceUpdater.cs#L31)
-
-### cache
-
-- [api](https://ota.maa.plus/MaaAssistantArknights/api/resource/)
+适用于Windows平台的Maa资源增量更新脚本（[下载地址](https://github.com/LaviniaFalcone/MaaResourceMirror/releases)）。
