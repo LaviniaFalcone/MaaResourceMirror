@@ -1,0 +1,22 @@
+{
+    "AS-OpenOcr": {
+        "text": [
+            "Adventure",
+            "Cannot",
+            "Wait",
+            "Sun",
+            "Harvest",
+            "Gathering",
+            "Treasure",
+            "House"
+        ]
+    },
+    "ASChapterToAS": {
+        "text": [
+            "Citizen",
+            "CITIZEN",
+            "Garden",
+            "GARDEN"
+        ]
+    }
+}
