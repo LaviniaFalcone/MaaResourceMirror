@@ -1,0 +1,51 @@
+name: Sync Upstream
+
+permissions:
+  contents: write
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+jobs:
+  pull-directories:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+
+      - name: Set up Git
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+
+      - name: Add remote for MaaResource repository
+        run: |
+          git remote add MaaResource https://github.com/MaaAssistantArknights/MaaResource.git
+          git fetch MaaResource main # 明确指定从main分支拉取
+
+      - name: Create cache and resource directories if they do not exist
+        run: |
+          mkdir -p cache resource
+
+      - name: Copy cache and resource directories from MaaResource
+        run: |
+          git checkout MaaResource/main -- cache resource || (echo "Failed to copy directories, check if they exist in the source repo." && exit 1)
+
+      - name: List files after copying
+        run: ls -la cache && ls -la resource
+
+      - name: Commit changes
+        run: |
+          git add .
+          git diff-index --quiet HEAD || (git commit -m "Update cache and resource from MaaResource" && echo "Changes committed.")
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'main'
